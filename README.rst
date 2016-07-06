@@ -1,5 +1,5 @@
 ====
-BETA
+BLOG
 ====
 
 Installation:
