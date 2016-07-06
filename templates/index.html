@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+
+<h1>Blogs</h1>
+
+<div class="row">
+<table class="table">
+{% for article in articles %}
+    <tr>
+    <td><a href="/article/{{ article.id }}/">#{{ article.id }}</a></td><td><a href="/article/{{ article.id }}/">{{ article.title }}</a></td>
+    <td>{{ article.created_time }}</td><td>{{ article.updated_time }}</td>
+    </tr>
+{% endfor %}
+
+
+</table>
+
+<ul class="pagination">
+{% for  i in  total %}
+   <li><a href="?cp={{ i }}">{{ i }}</a></li>
+{% endfor %}
+</ul>
+</div>
+{% endblock %}
+

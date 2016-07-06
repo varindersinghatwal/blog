@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+
+<div class="row">
+  <div class="col-md-12">
+    <form id="article_form" action='.' method='post'>{% csrf_token %}
+      <fieldset class="form-group">
+	<label >Title</label>
+	<input type="text" class="form-control" id="title" placeholder="Title" />
+      </fieldset>
+      <fieldset class="form-group">
+        <label >Content</label>
+        <textarea row="30" class="form-control form-textarea para" placeholder="Add content here" ></textarea>
+      </fieldset>
+    </form>
+    <button class="btn btn-primary" onclick="postArticle()">Post Article</button>
+  </div>
+</div>
+
+
+<script>
+function postArticle(){
+    var title = $("#title").val();
+    title = title.trim();
+    var text = $(".para").val();
+    if (!title){
+        alert("Title can not be blank");
+        return false;
+    }
+
+    if (!text){
+        alert("content can not blank");
+        return false;
+    }
+    
+    $.ajax({url:'',
+        type: 'POST',
+        data : { title:title, text:text },
+        success: function(data){
+            console.log(data);
+            window.location.href = "/";
+        }
+    });
+}
+</script>
+
+{% endblock%}

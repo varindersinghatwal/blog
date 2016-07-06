@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+
+<h1> {{ article.title }} </h1>
+
+<div class="row">
+  <div class="col-md-12">
+    {% for paragraph in paragraphs %}
+        <p class="lead" style="color: {{ paragraph.color }}"> {{ paragraph.text }} </p>
+	<a class="pull-right" data-placement="left" data-toggle="popover" data-title="Add comment" data-container="body" type="button" data-html="true" href="#" id="comment_{{ paragraph.id }}">Comment</a>
+        <div id="popover_comment_{{ paragraph.id }}" class="hide" >
+	<form action="/comments/" method="post">{% csrf_token %}
+          <fieldset class="form-group">
+	  <textarea row="4" name="text" placeholder="add comment..."></textarea>
+          </fieldset>
+	  <input type="hidden" name="para" value="{{ paragraph.id  }}">
+	  <input type="hidden" name="article" value="{{article.id}}">
+	  <button type="submit" class="btn btn-primary">Comment</button>
+          
+	</form>
+        </div>
+    {% endfor %}
+  </div>
+</div>
+<h2>Comments</h2>
+<ul>
+  {% for comment in comments %}
+      <li style="color: {{ comment.paragraph.color }}" >{{ comment.text }}</li>
+  {% endfor %}
+</ul>
+{% endblock %}
+
+{% block script %}
+
+$("[data-toggle=popover]").popover({
+    html: true, 
+    content: function() {
+        return $('#popover_'+this.id).html();
+    }
+});
+
+{% endblock %}
