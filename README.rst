@@ -11,6 +11,6 @@ Installation:
 
 ``sh startweb.sh``
 
-View Demo_
+`View Demo`_
 
 .. _View Demo: http://52.32.177.221:8383/
