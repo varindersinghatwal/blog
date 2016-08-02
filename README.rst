@@ -11,9 +11,6 @@ Installation:
 
 ``sh startweb.sh``
 
-A sentence with links to Wikipedia_ and the `Linux kernel archive`_.
-
-.. _Wikipedia: http://www.wikipedia.org/
-.. _Linux kernel archive: http://www.kernel.org/
+View Demo_
 
 .. _View Demo: http://52.32.177.221:8383/
